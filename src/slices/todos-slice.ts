@@ -22,7 +22,7 @@ export const getTodosAsync = createAsyncThunk(
             setTimeout(async () => {
                 const data = await apiService.storeMethods.getTodos()
                 resolve(data)
-            }, 2000)
+            }, 1000)
         })
         //return await apiService.storeMethods.getTodos()
     }

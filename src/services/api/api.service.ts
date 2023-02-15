@@ -1,4 +1,7 @@
-import { ToDoItem, ToDoItemStatus, TodosDto } from "./types"
+
+// * Version with db.json
+
+/* import { ToDoItem, ToDoItemStatus, TodosDto } from "./types"
 
 const apiServiceDef = () => {
     //Private properties 
@@ -71,5 +74,57 @@ const apiServiceDef = () => {
     return { addTodo, deleteTodo,updateTodoStatus ,editTodo, storeMethods: { getTodos } }
 }
 
+
+export const apiService = apiServiceDef() */
+
+
+//* Version with local storage
+import { ToDoItem, ToDoItemStatus, TodosDto } from "./types"
+
+const apiServiceDef = () => {
+    //Private properties 
+    const todoKey = 'todos'
+
+    const getTodos = (): TodosDto => {
+        const todosString = localStorage.getItem(todoKey)
+        if (todosString) {
+            return JSON.parse(todosString)
+        } else {
+            return []
+        }
+    }
+
+    const addTodo = (todo: ToDoItem): void => {
+        const todos = getTodos()
+        todos.push(todo)
+        localStorage.setItem(todoKey, JSON.stringify(todos))
+    }
+
+    const editTodo = (id: string, todo: ToDoItem): void => {
+        const todos = getTodos()
+        const todoIndex = todos.findIndex((t) => t.id === id)
+        if (todoIndex !== -1) {
+            todos[todoIndex] = todo
+            localStorage.setItem(todoKey, JSON.stringify(todos))
+        }
+    }
+
+    const deleteTodo = (id: string): void => {
+        const todos = getTodos()
+        const filteredTodos = todos.filter((t) => t.id !== id)
+        localStorage.setItem(todoKey, JSON.stringify(filteredTodos))
+    }
+
+    const updateTodoStatus = (id: string, status: ToDoItemStatus): void => {
+        const todos = getTodos()
+        const todoIndex = todos.findIndex((t) => t.id === id)
+        if (todoIndex !== -1) {
+            todos[todoIndex].status = status
+            localStorage.setItem(todoKey, JSON.stringify(todos))
+        }
+    }
+
+    return { addTodo, deleteTodo, updateTodoStatus, editTodo, storeMethods: { getTodos } }
+}
 
 export const apiService = apiServiceDef()

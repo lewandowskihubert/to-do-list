@@ -3,10 +3,11 @@ import styled from "styled-components"
 export const TodosCreatorContainer = styled.div`
     display: flex;
     flex-flow: column nowrap;
-    width: 900px;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
-    margin: auto;
-    margin-top: 50px;
+    margin-top: 10px;
+    border-bottom: 1px solid black;
 `
 
 

@@ -1,5 +1,6 @@
 import Header from './components/header/header';
 import TodosContainer from './components/todos-container/todos-container';
+import './App.css'
 
 function App() {
   return (
