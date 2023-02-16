@@ -45,13 +45,13 @@ const TodosItem: React.FC<TodosItemProps> = ({ todo }) => {
         </TodosItemInfo>
         <TodosItemActions>
         <IconButton type="button" size="small" aria-label="edit" onClick={editItem}>
-            <EditIcon fontSize="small"/>
+            <EditIcon htmlColor="white" fontSize="small"/>
             </IconButton>
         <IconButton type="button" size="small" aria-label="delete" onClick={deleteItem}>
-        <DeleteIcon  fontSize="small"/>
+        <DeleteIcon  htmlColor="white" fontSize="small"/>
         </IconButton>
       {todo.status === 'done' ? <></> :  <IconButton size="small" type="button" onClick={ () => {handleUpdateTodoStatus(todo.id, todo.status === 'to-do' ? 'in-progress' : 'done')}}>
-        {todo.status ==='to-do' ? <StartIcon/> : <DoneIcon/>} </IconButton>}      
+        {todo.status ==='to-do' ? <StartIcon  htmlColor="white"/> : <DoneIcon  htmlColor="white"/>} </IconButton>}      
         </TodosItemActions>
 
     </TodosItemContainer>

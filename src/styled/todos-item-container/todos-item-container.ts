@@ -6,13 +6,11 @@ export const TodosItemContainer = styled.div`
   align-items: center;
   padding: 10px;
   margin-bottom: 10px;
-  border-radius: 4px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
   max-width: 500px;
-  &:hover {
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
+  background-color: #333333;
+    color:white;
+
 `
 
 

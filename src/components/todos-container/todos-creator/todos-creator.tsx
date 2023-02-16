@@ -1,5 +1,5 @@
 import {
-    Button,
+  Button,
   InputLabel,
   MenuItem,
   Select,
@@ -18,6 +18,12 @@ import {
 import { TodosCreatorContainer } from "../../../styled/todos-creator-container/todos-creator-container";
 import { TodosCreatorColumn } from "../../../styled/todos-creator-container/todos-creator-column";
 import { triggerTodoListRefreshNeededEvent } from "../../../utils/utils";
+import { inputLabelClasses } from "@mui/material/InputLabel";
+import { TodosCreatorCentering } from "../../../styled/todos-creator-container/todos-creator-centering";
+import { MyTextField, MySelect } from "../../../styled/todos-creator-container/text-field";
+import { FormContainer } from "../../../styled/todos-creator-container/form-container";
+import { display } from "@mui/system";
+import { MyForm } from "../../../styled/form/styled-form";
 
 interface FormData {
   name: string;
@@ -98,58 +104,98 @@ const TodosCreator: React.FC = () => {
     triggerTodoListRefreshNeededEvent();
 
     setFormData(getFormDataDefaults());
-  };
-
+  }
+  
   return (
-    <TodosCreatorContainer>
-      <form onSubmit={isInEditMode ? editTodo : saveTodo}>
-        <TodosCreatorColumn>
-          <TextField
-            id="outlined-basic"
-            label="Name"
-            variant="outlined"
-            title="name"
-            name="name"
-            value={formData.name}
-            onChange={changeHandler}
-          />
-        </TodosCreatorColumn>
-        <TodosCreatorColumn>
-          <TextField
-            id="outlined-multiline-flexible"
-            title="description"
-            name="description"
-            value={formData.description}
-            label="Description"
-            multiline
-            maxRows={4}
-            onChange={changeHandler}
-          />
-        </TodosCreatorColumn>
-        <TodosCreatorColumn>
+      
+      <TodosCreatorContainer>
+        <FormContainer>
+        <MyForm onSubmit={isInEditMode ? editTodo : saveTodo}>
+          <TodosCreatorColumn>
+            <MyTextField
+              inputProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+              InputLabelProps={{
+                sx: {
+                  color: "white",
+                  [`&.${inputLabelClasses.shrink}`]: {
+                    color: "white",
+                  },
+                },
+              }}
+              id="outlined-basic"
+              label="Name your task..."
+              title="name"
+              name="name"
+              value={formData.name}
+              onChange={changeHandler}
+              variant="outlined"
+            />
+          </TodosCreatorColumn>
+          <TodosCreatorColumn>
+            <MyTextField
+              inputProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+              InputLabelProps={{
+                sx: {
+                  color: "white",
+                  [`&.${inputLabelClasses.shrink}`]: {
+                    color: "white",
+                  },
+                },
+              }}
+              id="outlined-multiline-flexible"
+              title="description"
+              name="description"
+              value={formData.description}
+              label="Describe your task..."
+              multiline
+              maxRows={4}
+              onChange={changeHandler}
+              sx={{ color: "white" }}
+            />
+          </TodosCreatorColumn>
+          <TodosCreatorColumn>
             <span>
-          <InputLabel id="priority-select">Priority</InputLabel>
-          <Select
-            title="priority"
-            name="priority"
-            labelId="priority-select"
-            id="priority-select-autowidth"
-            value={formData.priority}
-            onChange={changeSelectHandler}
-            autoWidth
-            label="Priority"
-          >
-            <MenuItem value="low">Low</MenuItem>
-            <MenuItem value="medium">Medium</MenuItem>
-            <MenuItem value="high">High</MenuItem>
-          </Select>
-          </span>
-          <span>
-        {isInEditMode ? <Button type="submit" variant="contained">Edit Task</Button> : <Button type="submit" variant="contained">Add Task</Button>}
-        </span>
-        </TodosCreatorColumn>
-      </form>
-    </TodosCreatorContainer>
+              <MySelect
+                title="priority"
+                name="priority"
+                labelId="priority-select"
+                id="priority-select-autowidth"
+                value={formData.priority}
+                onChange={changeSelectHandler as (event: SelectChangeEvent<unknown>, child: ReactNode) => void}
+                autoWidth
+                label="Priority"
+                sx={{bgcolor:'#1976d2', color:'white'}}
+                
+              >
+                <MenuItem  value="low">Optional</MenuItem>
+                <MenuItem value="medium">Important</MenuItem>
+                <MenuItem value="high">Urgent</MenuItem>
+              </MySelect>
+            </span>
+            <span>
+              {isInEditMode ? (
+                <Button type="submit" variant="contained">
+                  Edit Task
+                </Button>
+              ) : (
+                <Button type="submit" variant="contained">
+                  Add Task
+                </Button>
+              )}
+            </span>
+          </TodosCreatorColumn>
+        </MyForm>
+        </FormContainer>
+      </TodosCreatorContainer>
+   
   );
 };
 

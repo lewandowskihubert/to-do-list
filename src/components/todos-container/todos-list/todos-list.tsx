@@ -10,6 +10,7 @@ import { TodosDto } from "../../../services/api/types";
 import Loading from "../../loading/loading";
 
 import { Box, Grid } from "@mui/material";
+import { TodosListContainer } from "../../../styled/todos-list-container/todos-list-container";
 const TodosList: React.FC = () => {
   const todos: TodosDto = useAppSelector(selectTodos);
   const isTodosListLoading: boolean = useAppSelector(selectIsTodosListLoading);
@@ -59,24 +60,32 @@ const TodosList: React.FC = () => {
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
-        {isTodosListLoading && <Loading />}
+      
+        
         <Grid item xs={2} sm={4} md={4}>
+        <TodosListContainer>
           <h2>Todo:</h2>
           {notCompletedTodos.map((todo) => (
             <TodosItem key={todo.id} todo={todo} />
           ))}
+          </TodosListContainer>
         </Grid>
+        
         <Grid item xs={2} sm={4} md={4}>
+        <TodosListContainer>
           <h2>In progress:</h2>
           {inProgressTodos.map((todo) => (
             <TodosItem key={todo.id} todo={todo} />
           ))}
+          </TodosListContainer>
         </Grid>
         <Grid item xs={2} sm={4} md={4}>
+        <TodosListContainer>
           <h2>Done:</h2>
           {doneTodos.map((todo) => (
             <TodosItem key={todo.id} todo={todo} />
           ))}
+          </TodosListContainer>
         </Grid>
       </Grid>
     </Box>

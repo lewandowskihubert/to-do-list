@@ -5,7 +5,10 @@ html,body{
 }
 
 body {
-    background: linear-gradient(135deg, #0074D9, #FFFFFF);
+    background-color: #fff; /* set the background color to white */
+    background-image: linear-gradient(rgba(0, 0, 255, 0.2) 1px, transparent 0),
+      linear-gradient(90deg, rgba(0, 0, 255, 0.2) 1px, transparent 0);
+    background-size: 20px 20px; /* set the size of the pattern */
     
   
     

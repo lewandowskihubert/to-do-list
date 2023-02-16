@@ -18,13 +18,8 @@ const initialState: TodosState = {
 export const getTodosAsync = createAsyncThunk(
     'todos/fetchTodos',
     async () => { 
-        return new Promise<TodosDto>((resolve) => {
-            setTimeout(async () => {
-                const data = await apiService.storeMethods.getTodos()
-                resolve(data)
-            }, 1000)
-        })
-        //return await apiService.storeMethods.getTodos()
+        const data = await apiService.storeMethods.getTodos()
+        return data
     }
 )
 
